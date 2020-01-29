@@ -61,9 +61,9 @@ window.renderStatistics = function (ctx, names, times) {
     renderColumn(CLOUD_X + GAP + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i, BASELINE, (BAR_HEIGHT * times[i]) / maxTime, color);
 
     ctx.fillText(
-      Math.round(times[i]),
-      CLOUD_X + GAP + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i,
-      BASELINE - (BAR_HEIGHT * times[i]) / maxTime - 20
+        Math.round(times[i]),
+        CLOUD_X + GAP + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i,
+        BASELINE - (BAR_HEIGHT * times[i]) / maxTime - 20
     );
   }
 
