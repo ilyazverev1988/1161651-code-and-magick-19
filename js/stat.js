@@ -50,7 +50,7 @@ window.renderStatistics = function (ctx, names, times) {
   }
 
   for (i = 0; i < names.length; i++) {
-    var color = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'hsl(240, ' + getRandom(0, 200) + '%, 50%)';
+    var color = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'hsl(240, ' + getRandom(1, 100) + '%, 50%)';
     var nameX = CLOUD_X + GAP + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i;
     var nameY = BASELINE + 5;
     var barHeight = (BAR_HEIGHT * times[i]) / maxTime;
