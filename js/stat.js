@@ -36,7 +36,7 @@ window.renderStatistics = function (ctx, names, times) {
 
   var renderCongratulationWords = function () {
     congratulationWords.forEach(function (text, index) {
-      renderText(ctx, text, TEXT_X, TEXT_Y + index * TEXT_GAP);
+      renderText(text, TEXT_X, TEXT_Y + index * TEXT_GAP);
     });
   };
 
@@ -57,14 +57,14 @@ window.renderStatistics = function (ctx, names, times) {
       var nameY = BASELINE + 5;
       var barHeight = (BAR_HEIGHT * time) / maxTime;
       var numberY = BASELINE - (BAR_HEIGHT * time) / maxTime - 20;
-      renderText(ctx, name, nameX, nameY);
-      renderColumn(ctx, nameX, BASELINE, barHeight, color);
-      renderText(ctx, Math.round(time), nameX, numberY);
+      renderText(name, nameX, nameY);
+      renderColumn(nameX, BASELINE, barHeight, color);
+      renderText(Math.round(time), nameX, numberY);
     });
   };
 
-  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
-  renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
+  renderCloud(CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
+  renderCloud(CLOUD_X, CLOUD_Y, '#fff');
   renderCongratulationWords();
   renderHistogram();
 };
