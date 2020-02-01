@@ -11,42 +11,41 @@ var BAR_WIDTH = 40;
 var BAR_HEIGHT = 150;
 var BAR_GAP = 50;
 var BASELINE = 250;
-var wordCongratulations = ['Ура вы победили!', 'Список результатов:'];
-
-var renderCloud = function (ctx, x, y, color) {
-  ctx.fillStyle = color;
-  ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
-};
+var congratulationWords = ['Ура вы победили!', 'Список результатов:'];
 
 var getRandom = function (min, max) {
   return min + Math.floor(Math.random() * (max - min + 1));
 };
 
-var renderText = function (ctx, text, x, y) {
-  ctx.fillStyle = '#000';
-  ctx.font = '16px PT Mono';
-  ctx.textBaseline = 'hanging';
-  ctx.fillText(text, x, y);
-};
-
-var renderColumn = function (ctx, left, bottom, columnHeight, color) {
-  ctx.fillStyle = color;
-  ctx.fillRect(left, bottom - columnHeight, BAR_WIDTH, columnHeight);
-};
-
-var getMaxElement = function (array) {
-  return Math.max.apply(Math, array);
+var getMaxElement = function (numbers) {
+  return Math.max.apply(Math, numbers);
 };
 
 window.renderStatistics = function (ctx, names, times) {
+  var renderText = function (text, x, y) {
+    ctx.fillStyle = '#000';
+    ctx.font = '16px PT Mono';
+    ctx.textBaseline = 'hanging';
+    ctx.fillText(text, x, y);
+  };
 
-  var renderWordCongratulations = function () {
-    wordCongratulations.forEach(function (text, index) {
+  var renderColumn = function (left, bottom, columnHeight, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(left, bottom - columnHeight, BAR_WIDTH, columnHeight);
+  };
+
+  var renderCongratulationWords = function () {
+    congratulationWords.forEach(function (text, index) {
       renderText(ctx, text, TEXT_X, TEXT_Y + index * TEXT_GAP);
     });
   };
 
-  var renderTextofColumn = function () {
+  var renderCloud = function (x, y, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
+  };
+
+  var renderHistogram = function () {
     var maxTime = getMaxElement(times);
     names.forEach(function (name, index) {
       var time = times[index];
@@ -66,7 +65,7 @@ window.renderStatistics = function (ctx, names, times) {
 
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
-  renderWordCongratulations();
-  renderTextofColumn();
+  renderCongratulationWords();
+  renderHistogram();
 };
 
