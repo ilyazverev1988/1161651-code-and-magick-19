@@ -11,7 +11,7 @@ var BAR_WIDTH = 40;
 var BAR_HEIGHT = 150;
 var BAR_GAP = 50;
 var BASELINE = 250;
-var textMassives = ['Ура вы победили!', 'Список результатов:'];
+var wordCongratulations = ['Ура вы победили!', 'Список результатов:'];
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -34,21 +34,19 @@ var renderColumn = function (ctx, left, bottom, columnHeight, color) {
   ctx.fillRect(left, bottom - columnHeight, BAR_WIDTH, columnHeight);
 };
 
+var getMaxElement = function (array) {
+  return Math.max.apply(Math, array);
+};
+
 window.renderStatistics = function (ctx, names, times) {
 
-  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
-  renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
-
-  var getTextCongratulate = function () {
-    textMassives.forEach(function (text, index) {
+  var renderWordCongratulations = function () {
+    wordCongratulations.forEach(function (text, index) {
       renderText(ctx, text, TEXT_X, TEXT_Y + index * TEXT_GAP);
     });
   };
 
-  var getText = function () {
-    var getMaxElement = function (arr) {
-      return Math.max.apply(Math, arr);
-    };
+  var renderTextofColumn = function () {
     var maxTime = getMaxElement(times);
     names.forEach(function (name, index) {
       var time = times[index];
@@ -66,7 +64,9 @@ window.renderStatistics = function (ctx, names, times) {
     });
   };
 
-  getTextCongratulate();
-  getText();
+  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
+  renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
+  renderWordCongratulations();
+  renderTextofColumn();
 };
 
