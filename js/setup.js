@@ -37,16 +37,16 @@ var getRandomElement = function (data) {
 };
 
 var generateWizards = function (numbers, names, surnames, coatColors, eyesColors) {
-  var wizards = [];
+  var magicians = [];
   for (var i = 0; i < numbers; i++) {
     var wizardElement = {
       name: getRandomElement(names) + ' ' + getRandomElement(surnames),
       coatColor: getRandomElement(coatColors),
       eyesColor: getRandomElement(eyesColors)
     };
-    wizards.push(wizardElement);
+    magicians.push(wizardElement);
   }
-  return wizards;
+  return magicians;
 };
 
 var renderWizard = function (wizard) {
@@ -76,8 +76,8 @@ var showSimilarWizards = function () {
 var renderWizards = function (data) {
 
   var fragment = document.createDocumentFragment();
-  data.forEach(function (index) {
-    fragment.appendChild(renderWizard(index));
+  data.forEach(function (wizard) {
+    fragment.appendChild(renderWizard(wizard));
   });
 
   similarListElement.appendChild(fragment);
