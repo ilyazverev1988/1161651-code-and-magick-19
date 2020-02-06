@@ -1,5 +1,8 @@
 'use strict';
 var NUMBER_OF_WIZARD = 4;
+var ESC_KEY = 'Escape';
+var ENTER_KEY = 'Enter';
+
 var namesWizard = [
   'Иван',
   'Хуан Себастьян',
@@ -29,10 +32,9 @@ var coatColorsWizard = [
   'rgb(0, 0, 0)'
 ];
 var eyesColorsWizard = ['black', 'red', 'blue', 'yellow', 'green'];
+var fireballColors = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var similarListElement = document.querySelector('.setup-similar-list');
 
-var ESC_KEY = 'Escape';
-var ENTER_KEY = 'Enter';
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = document.querySelector('.setup-close');
@@ -41,7 +43,11 @@ var setupUserName = document.querySelector('.setup-user-name');
 var wizardCoat = document.querySelector('.setup-wizard .wizard-coat');
 var wizardEyes = document.querySelector('.setup-wizard .wizard-eyes');
 var wizardFireball = document.querySelector('.setup-fireball-wrap');
-var fireballColors = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+
+var nameCoatColor = document.getElementsByName('coat-color');
+var nameEyesColor = document.getElementsByName('eyes-color');
+var nameFireballColor = document.getElementsByName('fireball-color');
+
 
 var getRandomElement = function (data) {
   var index = Math.floor(Math.random() * data.length);
@@ -143,18 +149,23 @@ setupClose.addEventListener('keydown', function (evt) {
   }
 });
 
-var makeRandomItemWizard = function (item, color) {
+var makeRandomItemWizard = function (item, color, nameItem) {
   item.addEventListener('click', function () {
-    item.style.fill = getRandomElement(color);
+    var randomColor = getRandomElement(color);
+    item.style.fill = randomColor;
+    nameItem[0].value = randomColor;
   });
 };
 
-var makeRandomColorFireball = function (item, color) {
+var makeRandomColorFireball = function (item, color, nameItem) {
   item.addEventListener('click', function () {
+    var randomColor = getRandomElement(color);
     item.style.background = getRandomElement(color);
+    nameItem[0].value = randomColor;
   });
 };
 
-makeRandomItemWizard(wizardCoat, coatColorsWizard);
-makeRandomItemWizard(wizardEyes, eyesColorsWizard);
-makeRandomColorFireball(wizardFireball, fireballColors);
+makeRandomItemWizard(wizardCoat, coatColorsWizard, nameCoatColor);
+makeRandomItemWizard(wizardEyes, eyesColorsWizard, nameEyesColor);
+makeRandomColorFireball(wizardFireball, fireballColors, nameFireballColor);
+
